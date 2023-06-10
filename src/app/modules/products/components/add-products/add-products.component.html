@@ -1,0 +1,113 @@
+<form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
+  <div class="pt-5">
+    <h3>{{product.id ? 'Edit ' : 'Add new '}} product</h3>
+    <div class="row pt-3">
+      <div class="col-6 mb-3">
+        <label for="title" class="form-label">Title <span class='text-danger'>*</span></label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          required
+          name="title"
+          [(ngModel)]="product.title"
+        >
+      </div>
+      <div class="col-6 mb-3">
+        <label for="brand" class="form-label">Brand <span class='text-danger'>*</span></label>
+        <input
+          type="text"
+          class="form-control"
+          id="brand"
+          name="brand"
+          required
+          [(ngModel)]="product.brand"
+        >
+      </div>
+      <div class="col-6 mb-3">
+        <label for="price" class="form-label">Price <span class='text-danger'>*</span></label>
+        <input
+          type="text"
+          class="form-control"
+          id="price"
+          required
+          name="price"
+          mask="9{6}"
+          [validation]="false"
+          [dropSpecialCharacters]='true'
+          [allowNegativeNumbers]="false"
+          [(ngModel)]="product.price"
+        >
+      </div>
+      <div class="col-6 mb-3">
+        <label for="discountPercentage" class="form-label">Discount Percentage </label>
+        <input
+          class="form-control"
+          type="text"
+          mask="percent.2"
+          suffix="%"
+          [dropSpecialCharacters]='true'
+          [allowNegativeNumbers]="false"
+          [validation]="false"
+          id="discountPercentage"
+          name="discountPercentage"
+          [(ngModel)]="product.discountPercentage"
+        >
+      </div>
+      <div class="col-6 mb-3">
+        <label for="rating" class="form-label">Rating <span class='text-danger'>*</span></label>
+        <input
+          type="text"
+          class="form-control"
+          min="0"
+          max="5"
+          mask="9"
+          [validation]="false"
+          id="rating"
+          name="rating"
+          [(ngModel)]="product.rating"
+        >
+      </div>
+      <div class="col-6 mb-3">
+        <label for="stock" class="form-label">Stock <span class='text-danger'>*</span></label>
+        <input
+          type="text"
+          class="form-control"
+          id="stock"
+          required
+          name="stock"
+          mask="9{3}"
+          [validation]="false"
+          [dropSpecialCharacters]='true'
+          [allowNegativeNumbers]="false"
+          [(ngModel)]="product.stock"
+        >
+      </div>
+      <div class="col-6 mb-3">
+        <label for="category" class="form-label">Category <span class='text-danger'>*</span></label>
+        <ng-select
+          [multiple]="false"
+          [(ngModel)]="product.category"
+          required
+          name="category"
+          id="category"
+        >
+          <ng-option *ngFor="let category of categories$ | async" [value]="category">
+            {{category}}
+          </ng-option>
+        </ng-select>
+      </div>
+      <div class="col-12 mb-3">
+        <label for="description" class="form-label">Description <span class='text-danger'>*</span></label>
+        <textarea
+          class="form-control"
+          required
+          id="description"
+          name="description"
+          [(ngModel)]="product.description"
+        ></textarea>
+    </div>
+    </div>
+    <button type="submit" class="btn btn-primary" type="submit">Submit</button>
+  </div>
+</form>

@@ -1,0 +1,30 @@
+<div *ngIf="product" class="pt-5 pb-b">
+  <h3>Product {{product.title}}</h3>
+
+  <div class="row pt-5 ">
+    <div class="col-6">
+      <div class="selectedImage" >
+        <img [src]="product.images[selectedImageIndex]" [alt]="product.title + 'selectedImage' ">
+      </div>
+      <div class="thumbnail d-flex mt-3">
+        <div *ngFor="let image of product.images; let i = index">
+          <img [src]="image" alt="" (click)="selectedImageIndex = i">
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="row">
+        <div class="col-12">price : {{product.price}}</div>
+        <div class="col-12">discountPercentage : {{product.discountPercentage}}</div>
+        <div class="col-12">rating : {{product.rating}} / 5</div>
+        <div class="col-12">stock : {{product.stock}}</div>
+        <div class="col-12">brand : {{product.brand}}</div>
+        <div class="col-12 pt-4">
+         
+          <h5>Description</h5>
+          {{product.description}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
